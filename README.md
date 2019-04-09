@@ -1,11 +1,11 @@
-# Erlang library for [Deribit API](https://www.deribit.com/docs/api/)
+# Erlang library for [Deribit API](https://docs.deribit.com/)
 
 ## Description
 
-The [Deribit API](https://www.deribit.com/docs/api/) is available in this package.
+The [Deribit API](https://docs.deribit.com/) is available in this package.
 
 This package contains module:
-* `deribit_api` - connects with [Deribit API](https://www.deribit.com/docs/api/) through REST or websocket
+* `deribit_api` - connects with [Deribit API](https://docs.deribit.com/) through REST or websocket
 
 ### Compile 
 ```
@@ -66,17 +66,17 @@ All methods accept optional `Options` list as last parameter. Allowed values:
 
 ### List of methods:
 
-* `index(Connection)` - [Doc](https://www.deribit.com/docs/api/#index), public  
+* `index(Connection)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#index), public  
   `index(Connection, Options)`
 
   Get price index, BTC-USD rates.
 
-* `getcurrencies(Connection)` - [Doc](https://www.deribit.com/docs/api/#getcurrencies), public  
+* `getcurrencies(Connection)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#getcurrencies), public  
   `getcurrencies(Connection, Options)`
 
   Get all supported currencies.
 
-* `getorderbook(Connection, Instrument)` - [Doc](https://www.deribit.com/docs/api/#getorderbook), public  
+* `getorderbook(Connection, Instrument)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#getorderbook), public  
   `getorderbook(Connection, Instrument, Options)`
 
   Retrieve the orderbook for a given instrument.
@@ -87,7 +87,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   |--------------|-----------------------|------------------------------------------------------------|
   | `Instrument` | `string() | binary()` | Required, instrument name                                  |
 
-* `getlasttrades(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#getlasttrades), public    
+* `getlasttrades(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#getlasttrades), public    
   `getlasttrades(Connection, Params, Options)`  
 
   Retrieve the latest trades that have occured for a specific instrument.
@@ -100,7 +100,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   | `count`      | `integer()`             | Optional, count of trades returned (limitation: max. count is 100)            |
   | `since`      | `integer()`             | Optional, “since” trade id, the server returns trades newer than that “since” |
 
-* `getsummary(Connection, Instrument)` - [Doc](https://www.deribit.com/docs/api/#getsummary), public  
+* `getsummary(Connection, Instrument)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#getsummary), public  
   `getsummary(Connection, Instrument, Options)`
 
   Retrieve the summary info such as Open Interest, 24H Volume etc for a specific instrument.
@@ -111,12 +111,12 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   |--------------|-----------------------|------------------------------------------------------------|
   | `Instrument` | `string() | binary()` | Required, instrument name                                  |
 
-* `account(Connection)` - [Doc](https://www.deribit.com/docs/api/#account), Private  
+* `account(Connection)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#account), Private  
   `account(Connection, Options)`
 
   Get user account summary.
 
-* `buy(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#buy), private  
+* `buy(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#buy), private  
   `buy(Connection, Params, Options)`  
 
   Place a buy order in an instrument.
@@ -131,7 +131,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   | `PostOnly`   | `boolean()`                      | Optional, if true then the order will be POST ONLY                                |
   | `Label`      | `string() | binary()`            | Optional, user defined maximum 4-char label for the order                         |
 
-* `sell(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#sell), private  
+* `sell(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#sell), private  
   `sell(Connection, Params, Options)`  
 
   Place a sell order in an instrument.
@@ -146,7 +146,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   | `PostOnly`   | `boolean`  | Optional, if true then the order will be POST ONLY                                |
   | `Label`      | `string`   | Optional, user defined maximum 4-char label for the order                         |
 
-* `edit(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#edit)  
+* `edit(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#edit)  
   `edit(Connection, Params, Options)`
 
   Edit price and/or quantity of the own order. (Authorization is required).
@@ -159,7 +159,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   | `Quantity`   | `integer() | float() | string()` | Required, quantity, in contracts ($10 per contract for futures, ฿1 — for options) |
   | `Price`      | `integer() | float() | string()` | Required, USD for futures, BTC for options                                        |
 
-* `cancel(Connection, OrderId)` - [Doc](https://www.deribit.com/docs/api/#cancel), private  
+* `cancel(Connection, OrderId)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#cancel), private  
   `cancel(Connection, OrderId, Options)`
 
   Cancel own order by id.
@@ -170,7 +170,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   |--------------|------------ |-----------------------------------------------------------------------------------|
   | `OrderId`    | `integer()` | Required, ID of the order returned by "sell" or "buy" request                     |
 
-* `cancelall(Connection, Type)` - [Doc](https://www.deribit.com/docs/api/#cancelall)  
+* `cancelall(Connection, Type)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#cancelall)  
   `cancelall(Connection, Type, Options)`
 
   Cancel all own futures, or all options, or all.
@@ -181,7 +181,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   |--------------|---------------------------|-------------------------------------------------------------------------------|
   | `Type`       | `all | futures | options` | Optional, type of instruments to cancel, allowed: "all", "futures", "options" |
 
-* `getopenorders(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#getopenorders), private  
+* `getopenorders(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#getopenorders), private  
   `getopenorders(Connection, Params, Options)`  
 
   Retrieve open orders.
@@ -193,12 +193,12 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   | `Instrument` | `string() | binary()` | Optional, instrument name, use if want orders for specific instrument |
   | `OrderId`    | `integer()`           | Optional, order id                                                    |
 
-* `positions(Connection)` - [Doc](https://www.deribit.com/docs/api/#positions), private  
+* `positions(Connection)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#positions), private  
   `positions(Connection, Options)`
 
   Retreive positions.
 
-* `orderhistory(Connection)` - [Doc](https://www.deribit.com/docs/api/#orderhistory), private  
+* `orderhistory(Connection)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#orderhistory), private  
   `orderhistory(Connection, Count)`  
   `orderhistory(Connection, Count, Options)`
 
@@ -210,7 +210,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   |------------|-------------|--------------------------------------------------------------------------------|
   | `Count`    | `integer()` | Optional, number of requested records, if not provided all records is returned |
 
-* `tradehistory(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#tradehistory), private  
+* `tradehistory(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#tradehistory), private  
   `tradehistory(Connection, Params, Options)`  
 
   Get private trade history of the account. (Authorization is required). The result is ordered by trade identifiers (trade id-s).
@@ -226,7 +226,7 @@ All methods accept optional `Options` list as last parameter. Allowed values:
 
 ### Additional methods available only when connected through websocket
 
-* `subscribe(Connection, Params)` - [Doc](https://www.deribit.com/docs/api/#orderhistory), private  
+* `subscribe(Connection, Params)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#orderhistory), private  
   `subscribe(Connection, Params, Options)`
 
   Subscribe to notifications. Notifications are send to calling process.
@@ -238,6 +238,6 @@ All methods accept optional `Options` list as last parameter. Allowed values:
   | `Count`  | `list(string()) | [all] | [futures] | [options] | [index]` | Required, list of instrument names, also aliases “all”, “futures”, “options” are allowed.  |
   | `Events` | `list(order_book | trade | user_order)` | Required, events to be reported                                                            |
 
-* `unsubscribe(Connection)` - [Doc](https://www.deribit.com/docs/api/#unsubscribe), private
+* `unsubscribe(Connection)` - [Doc](https://docs.deribit.com/rpc-endpoints.html#unsubscribe), private
 
   Unsubscribe notifications.
