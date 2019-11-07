@@ -17,7 +17,7 @@
   getcurrencies/1, getcurrencies/2,
   getorderbook/2, getorderbook/3,
   getsummary/2, getsummary/3,
-  index/1, index/2,
+  index/1, index/2, index/3,
   getlasttrades/2, getlasttrades/3,
   subscribe/2, subscribe/3,
   unsubscribe/1, unsubscribe/2
@@ -262,6 +262,10 @@ index(Connection) ->
 -spec index(connection(), options()) -> result().
 index(Connection, Options) when is_list(Options) ->
   request(Connection, "/api/v1/public/index", #{}, Options).
+
+-spec index(connection(), atom(), options()) -> result().
+index(Connection, Currency, Options) when is_atom(Currency) andalso is_list(Options) ->
+  request(Connection, "/api/v1/public/index", #{currency => Currency}).
 
 
 -spec getlasttrades(connection(), Params) -> result() when
