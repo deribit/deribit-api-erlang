@@ -115,7 +115,12 @@ handle_info({gun_ws, _Pid, {text, Text}}, #state{ pids_map = PidsMap, notificati
     {pong} ->
       {noreply, State#state{ last_pong = os:timestamp() }};
     {notifications, _} ->
-      NotificationsPid ! {self(), Result},
+      case NotificationsPid of
+        _ when is_pid(NotificationsPid) ->
+          NotificationsPid ! {self(), Result};
+        _ when is_function(NotificationsPid) ->
+          erlang:apply(NotificationsPid, [Result])
+      end,
       {noreply, State};
     _ ->
       Id = maps:get(<<"id">>, Json, undefined),
