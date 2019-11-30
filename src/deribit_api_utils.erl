@@ -22,7 +22,7 @@ generate_signature(Key, Secret, Uri, Data) ->
 
   ParamsString = deribit_api_utils:to_string(AllData),
   Hash = erlang:binary_to_list(base64:encode(crypto:hash(sha256, ParamsString))),
-  lists:flatten(Key ++ "." ++ Tstamp ++ "." ++ Hash).
+  lists:flatten([Key, ".", Tstamp, ".", Hash]).
 
 to_binary(Data) when is_binary(Data) ->
   Data;
